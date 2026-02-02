@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  background: #f4f4f4;
+  padding: 16px;
+}
+
+.main {
+  flex: 1;
+}
+
+.documents-grid {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.doc-card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editor {
+  min-height: 80vh;
+  padding: 24px;
+}
