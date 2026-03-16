@@ -2,25 +2,24 @@ import React from "react";
 
 const Topbar = () => {
 
-  const logout = () => {
+const logout = () => {
+localStorage.removeItem("token");
+window.location = "/login";
+};
 
-    localStorage.removeItem("token");
+return(
 
-    window.location.href = "/login";
+<div className="topbar">
 
-  };
+<input placeholder="Search documents..." />
 
-  return (
-    <div className="topbar">
+<button onClick={logout}>
+Logout
+</button>
 
-      <input placeholder="Search documents..." />
+</div>
 
-      <button onClick={logout} className="logout-btn">
-        Logout
-      </button>
-
-    </div>
-  );
+);
 
 };
 

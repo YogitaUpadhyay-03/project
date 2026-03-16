@@ -3,6 +3,7 @@ import { getDocs, createDoc } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
+import "../styles/Dashboard.css";
 import DocumentCard from "../components/DocumentCard";
 
 const Dashboard = () => {

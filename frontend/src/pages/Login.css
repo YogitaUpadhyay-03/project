@@ -1,0 +1,156 @@
+.login-page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#0f172a;
+overflow:hidden;
+position:relative;
+font-family:sans-serif;
+}
+
+/* glowing animated balls */
+
+.glow-ball{
+position:absolute;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.8;
+animation:float 18s infinite linear;
+}
+
+.ball1{
+width:350px;
+height:350px;
+background:linear-gradient(45deg,#3b82f6,#9333ea);
+top:5%;
+left:5%;
+}
+
+.ball2{
+width:260px;
+height:260px;
+background:linear-gradient(45deg,#22c55e,#06b6d4);
+bottom:5%;
+right:10%;
+}
+
+.ball3{
+width:220px;
+height:220px;
+background:linear-gradient(45deg,#f59e0b,#ef4444);
+top:60%;
+left:50%;
+}
+
+@keyframes float{
+0%{transform:translate(0,0)}
+25%{transform:translate(80px,-60px)}
+50%{transform:translate(-60px,80px)}
+75%{transform:translate(60px,40px)}
+100%{transform:translate(0,0)}
+}
+
+/* login card */
+
+.login-card{
+position:relative;
+z-index:2;
+background:rgba(15,23,42,0.95);
+padding:40px;
+border-radius:12px;
+width:340px;
+backdrop-filter:blur(12px);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+color:white;
+text-align:center;
+}
+
+/* title */
+
+.title{
+margin-bottom:5px;
+}
+
+.subtitle{
+color:#cbd5f5;
+margin-bottom:25px;
+}
+
+/* inputs */
+
+.input-field{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:none;
+border-radius:6px;
+background:#1e293b;
+color:white;
+font-size:14px;
+}
+
+/* keep same color on focus */
+
+.input-field:focus{
+outline:none;
+background:#1e293b;
+}
+
+/* placeholder */
+
+.input-field::placeholder{
+color:#94a3b8;
+}
+
+/* FIX autofill color issue */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+-webkit-box-shadow:0 0 0 30px #1e293b inset !important;
+-webkit-text-fill-color:white !important;
+transition:background-color 5000s ease-in-out 0s;
+}
+
+/* placeholder color */
+
+.input-field::placeholder{
+color:#94a3b8;
+}
+
+/* password field */
+
+.password-field{
+position:relative;
+}
+
+/* eye icon */
+
+.eye{
+position:absolute;
+right:12px;
+top:12px;
+cursor:pointer;
+}
+
+/* login button */
+
+.login-btn{
+width:70%;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#3b82f6;
+color:white;
+font-size:16px;
+cursor:pointer;
+display:block;
+margin:10px auto 0 auto;
+transition:0.3s;
+}
+
+.login-btn:hover{
+background:#2563eb;
+}

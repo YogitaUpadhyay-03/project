@@ -1,0 +1,122 @@
+/* Layout */
+
+.layout{
+display:flex;
+height:100vh;
+background:#0f172a;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:220px;
+background:#020617 !important;
+padding:20px;
+color:white;
+}
+
+.sidebar{
+width:220px;
+background:#020617;
+padding:20px;
+color:white;
+}
+
+.sidebar h2{
+color:white;
+margin-bottom:20px;
+}
+
+.create-btn{
+background:#3b82f6;
+border:none;
+padding:10px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+margin-bottom:20px;
+width:100%;
+font-weight:500;
+}
+
+.create-btn:hover{
+background:#2563eb;
+}
+
+.sidebar ul{
+list-style:none;
+padding:0;
+}
+
+.sidebar li{
+margin:10px 0;
+cursor:pointer;
+color:#94a3b8;
+}
+
+.sidebar li:hover{
+color:white;
+}
+
+/* Main section */
+
+.main{
+flex:1;
+padding:20px;
+}
+
+/* Topbar */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.topbar input{
+padding:10px;
+width:250px;
+border-radius:6px;
+border:none;
+background:#1e293b;
+color:white;
+}
+
+/* Documents grid */
+
+.documents-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+}
+
+/* Document card */
+
+.doc-card{
+background:#334155 !important;
+padding:20px;
+border-radius:12px;
+cursor:pointer;
+transition:0.25s;
+color:white !important;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.doc-card:hover{
+transform:translateY(-4px);
+background:#475569 !important;
+}
+
+.doc-title{
+font-size:18px;
+font-weight:600;
+color:white !important;
+margin-bottom:6px;
+}
+
+.doc-date{
+font-size:13px;
+color:#cbd5f5 !important;
+}

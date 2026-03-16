@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router-dom";
 
 const DocumentCard = ({ doc }) => {
-  const nav = useNavigate();
+
+  const navigate = useNavigate();
+
   return (
-    <div className="doc-card" onClick={() => nav(`/doc/${doc._id}`)}>
-      <h4>{doc.title}</h4>
-      <p>Edited {new Date(doc.updatedAt).toLocaleString()}</p>
+    <div
+      className="doc-card"
+      onClick={() => navigate(`/doc/${doc._id}`)}
+    >
+      <div className="doc-title">
+        {doc.title || "Untitled Document"}
+      </div>
+
+      <div className="doc-date">
+        Last edited: {new Date(doc.updatedAt).toLocaleDateString()}
+      </div>
     </div>
   );
+
 };
 
 export default DocumentCard;
