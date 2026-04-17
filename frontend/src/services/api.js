@@ -1,74 +1,112 @@
 const API = "http://localhost:5000";
 
-/* Get all documents */
+/* ============================= */
+/*       Get all documents       */
+/* ============================= */
 
 export const getDocs = async () => {
 
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`${API}/docs`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  try {
 
-  const data = await res.json();
+    const res = await fetch(`${API}/docs`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-  console.log("DOCS:", data);
+    const data = await res.json();
 
-  return Array.isArray(data) ? data : [];
+    console.log("DOCS:", data);
+
+    return Array.isArray(data) ? data : [];
+
+  } catch (err) {
+    console.log("Error fetching docs:", err);
+    return [];
+  }
 
 };
 
 
-/* Create new document */
+/* ============================= */
+/*       Create new document     */
+/* ============================= */
 
-export const createDoc = async () => {
+export const createDoc = async (title) => {
 
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`${API}/docs`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  try {
 
-  return res.json();
+    const res = await fetch(`${API}/docs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ title })
+    });
+
+    return await res.json();
+
+  } catch (err) {
+    console.log("Error creating doc:", err);
+  }
 
 };
 
 
-/* Get single document */
+/* ============================= */
+/*       Get single document     */
+/* ============================= */
 
 export const getDoc = async (id) => {
 
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`${API}/docs/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+  try {
 
-  return res.json();
+    const res = await fetch(`${API}/docs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    return await res.json();
+
+  } catch (err) {
+    console.log("Error fetching doc:", err);
+  }
 
 };
 
 
-/* Save document */
+/* ============================= */
+/*       Save document           */
+/* ============================= */
 
-export const saveDoc = async (id, content) => {
+export const saveDoc = async (id, content, title) => {
 
   const token = localStorage.getItem("token");
 
-  await fetch(`${API}/docs/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`
-    },
-    body: JSON.stringify({ content })
-  });
+  try {
+
+    await fetch(`${API}/docs/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        content,
+        title
+      })
+    });
+
+  } catch (err) {
+    console.log("Error saving doc:", err);
+  }
 
 };

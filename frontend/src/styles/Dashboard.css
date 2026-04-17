@@ -120,3 +120,24 @@ margin-bottom:6px;
 font-size:13px;
 color:#cbd5f5 !important;
 }
+
+.context-menu {
+  position: absolute;
+  background: #1e293b;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 0;
+  width: 150px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+.context-menu div {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.context-menu div:hover {
+  background: #3b82f6;
+}

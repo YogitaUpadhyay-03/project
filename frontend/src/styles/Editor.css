@@ -1,0 +1,80 @@
+.editor-page {
+  background: #0f172a;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+}
+
+/* HEADER */
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* RIGHT SIDE */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* TITLE */
+.doc-title {
+  font-size: 22px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+/* SAVE BUTTON */
+.save-btn {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* USERS */
+.users {
+  display: flex;
+  gap: 6px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+
+/* EDITOR */
+.editor-container {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* QUILL */
+.quill-editor .ql-toolbar {
+  background: #f8fafc;
+}
+
+.quill-editor .ql-container {
+  background: white;
+  min-height: 400px;
+}
+
+/* TEXT FIX */
+.quill-editor .ql-editor {
+  color: black !important;
+}
