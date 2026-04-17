@@ -20,11 +20,20 @@ mongoose.connect("mongodb://127.0.0.1:27017/lumina_docs")
 
 app.use("/auth", authRoutes);
 
-/* DOC ROUTES */
+/* ================= DOC ROUTES ================= */
 
 app.get("/docs", verifyToken, async (req, res) => {
   const docs = await Document.find().sort({ updatedAt: -1 });
   res.json(docs);
+});
+
+app.post("/docs", verifyToken, async (req, res) => {
+  const doc = await Document.create({
+    title: req.body.title || "Untitled Document",
+    content: "",
+    updatedAt: new Date()
+  });
+  res.json(doc);
 });
 
 app.get("/docs/:id", verifyToken, async (req, res) => {
@@ -41,13 +50,18 @@ app.put("/docs/:id", verifyToken, async (req, res) => {
   res.sendStatus(200);
 });
 
-/* SERVER */
+app.delete("/docs/:id", verifyToken, async (req, res) => {
+  await Document.findByIdAndDelete(req.params.id);
+  res.sendStatus(200);
+});
+
+/* ================= SERVER ================= */
 
 const server = app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
 });
 
-/* WEBSOCKET */
+/* ================= WEBSOCKET ================= */
 
 const wss = new WebSocketServer({ server });
 

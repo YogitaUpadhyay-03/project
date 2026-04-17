@@ -1,4 +1,4 @@
-let socket;
+let socket = null;
 
 export const getSocket = () => {
   if (!socket || socket.readyState === WebSocket.CLOSED) {
