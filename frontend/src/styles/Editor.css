@@ -1,8 +1,8 @@
+/* PAGE */
 .editor-page {
   background: #0f172a;
   min-height: 100vh;
   padding: 20px;
-  color: white;
 }
 
 /* HEADER */
@@ -13,31 +13,31 @@
   margin-bottom: 20px;
 }
 
+.doc-title {
+  font-size: 28px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
 /* RIGHT SIDE */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-/* TITLE */
-.doc-title {
-  font-size: 22px;
-  font-weight: 600;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: white;
+  gap: 10px;
 }
 
 /* SAVE BUTTON */
 .save-btn {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
   border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
   color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 /* USERS */
@@ -50,31 +50,48 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  color: white;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 12px;
 }
 
-/* EDITOR */
+/* EDITOR CONTAINER */
 .editor-container {
   background: white;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 10px;
+  min-height: 500px;
 }
 
-/* QUILL */
-.quill-editor .ql-toolbar {
-  background: #f8fafc;
+/* QUILL TOOLBAR */
+.ql-toolbar {
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #ddd;
 }
 
-.quill-editor .ql-container {
-  background: white;
+/* QUILL EDITOR BOX */
+.ql-container {
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #ddd;
   min-height: 400px;
 }
 
-/* TEXT FIX */
-.quill-editor .ql-editor {
-  color: black !important;
+/* TEXT FIX (IMPORTANT) */
+.ql-editor {
+  min-height: 350px;
+  font-size: 16px;
+  color: black;          /* 🔥 TEXT BLACK FIX */
+  background: white;
+}
+
+/* PLACEHOLDER */
+.ql-editor.ql-blank::before {
+  color: #999;
+}
+
+/* REMOVE DARK MODE OVERRIDE */
+.ql-editor * {
+  color: black !important;   /* 🔥 FORCE FIX */
 }

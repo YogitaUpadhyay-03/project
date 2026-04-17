@@ -18,15 +18,15 @@ const Editor = () => {
   const userRef = useRef(null);
   const socketRef = useRef(null);
 
-  /* USER (PERSIST) */
+  /* USER CREATE */
   const getOrCreateUser = () => {
     let user = localStorage.getItem("user");
 
     if (!user) {
       user = {
         id: "user-" + Date.now(),
-        name: "User 1",
-        color: "#" + Math.floor(Math.random()*16777215).toString(16)
+        name: "User " + Math.floor(Math.random() * 10),
+        color: "#" + Math.floor(Math.random() * 16777215).toString(16)
       };
       localStorage.setItem("user", JSON.stringify(user));
     } else {
@@ -47,31 +47,44 @@ const Editor = () => {
   /* SOCKET SETUP */
   useEffect(() => {
 
-    socketRef.current = getSocket();
-    const socket = socketRef.current;
+    const socket = getSocket();
+    socketRef.current = socket;
 
     const user = getOrCreateUser();
     userRef.current = user;
 
-    socket.onopen = () => {
+    const sendJoin = () => {
       socket.send(JSON.stringify({
         type: "join",
         user
       }));
     };
 
+    if (socket.readyState === 1) {
+      sendJoin();
+    } else {
+      socket.onopen = sendJoin;
+    }
+
     socket.onmessage = (e) => {
 
       const data = JSON.parse(e.data);
 
+      /* USERS */
       if (data.type === "users") {
         setUsers(data.users);
       }
 
-      if (data.type === "content" && data.docId === id) {
+      /* CONTENT (IMPORTANT FIX) */
+      if (
+        data.type === "content" &&
+        data.docId === id &&
+        data.user?.id !== userRef.current?.id
+      ) {
         setContent(data.content);
       }
 
+      /* CURSOR */
       if (data.type === "cursor" && data.docId === id) {
         setCursors(prev => ({
           ...prev,
@@ -94,7 +107,8 @@ const Editor = () => {
       socket.send(JSON.stringify({
         type: "content",
         docId: id,
-        content: value
+        content: value,
+        user: userRef.current   // 🔥 IMPORTANT FIX
       }));
     }
 
@@ -139,6 +153,7 @@ const Editor = () => {
             Save
           </button>
 
+          {/* USERS */}
           <div className="users">
             {users
               .filter(u => u.id !== userRef.current?.id)
@@ -167,6 +182,7 @@ const Editor = () => {
 
       </div>
 
+      {/* CURSORS */}
       {Object.values(cursors)
         .filter(c => c.user.id !== userRef.current?.id)
         .map(c => (
@@ -180,19 +196,23 @@ const Editor = () => {
               zIndex: 999
             }}
           >
-            <div style={{
-              width: "8px",
-              height: "8px",
-              background: c.user.color,
-              borderRadius: "50%"
-            }} />
-            <div style={{
-              fontSize: "11px",
-              background: c.user.color,
-              color: "white",
-              padding: "2px 6px",
-              borderRadius: "4px"
-            }}>
+            <div
+              style={{
+                width: "8px",
+                height: "8px",
+                background: c.user.color,
+                borderRadius: "50%"
+              }}
+            />
+            <div
+              style={{
+                fontSize: "11px",
+                background: c.user.color,
+                color: "white",
+                padding: "2px 6px",
+                borderRadius: "4px"
+              }}
+            >
               {c.user.name}
             </div>
           </div>
